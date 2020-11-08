@@ -20,5 +20,7 @@ class HomeMatch(FormView):
         if username is not None:
             torreIntegration = TorreIntegration()
             bio = torreIntegration.get_bio(username)
+            jobs = torreIntegration.get_dream_jobs()
             context["bio"] = bio.json()["person"]
+            context["jobs"] = jobs["results"]
         return context

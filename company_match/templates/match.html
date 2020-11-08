@@ -1,9 +1,24 @@
 {% extends "base.html" %}
-{% load crispy_forms_tags i18n%}
+{% load crispy_forms_tags static i18n%}
 
 {% block title %}Server Error{% endblock %}
 
 {% block content %}
+<style>
+    .job-item-img{
+        width: 150px;
+    }
+    .list-jobs{
+        overflow-y: scroll;
+        max-height: 400px;
+    }
+    .border-light{
+        border-color: white !important;
+    }
+    .container-job{
+        display: flex;
+    }
+</style>
 <div class="container">
     <center><h2>Find your Company Dreams!!</h2></center>
 
@@ -19,10 +34,14 @@
         </div>
     </form>
     <div class="row">
-      <div class="col-sm">
+      <div class="col-sm-4">
         <!--First Column-->
         <div class="card" style="width: 18rem;">
+            {% if bio %}
             <img class="card-img-top" src="{{ bio.picture }}" alt="Picture">
+            {% else %}
+            <img class="card-img-top" src="{% static 'images/not_found.png' %}" alt="Picture">
+            {% endif %}
             <div class="card-body">
               <p class="card-text"><b>Name:</b> {{bio.name}}</p>
               <p class="card-text"><b>professional Headline:</b> {{bio.professionalHeadline}}</p>
@@ -30,9 +49,27 @@
           </div>
         <!--endFirst Column-->
       </div>
-      <div class="col-sm">
-        One of three columns
+      <div class="col-sm-8">
+        <div class="list-jobs" style="overflow-y: scroll;">
+        {% if jobs %}
+            {% for job in jobs %}
+                <!--job item-->
+                <div class="container-job">
+                    <div class="job-image">
+                        <img class="job-item-img"  src="{{ job.organizations.0.picture }}" alt="Picture">
+                    </div>
+                    <div class="">
+                        <p>{{ job.organizations.0.name }}</p>
+                        <p>job: {{ job.objective}}</p>
+                    </div>
+                </div>  
+                <!--end job item-->
+            {% endfor %}
+        {% else %}
+            Jobs not found
+        {% endif %}
       </div>
+    </div>
     </div>
   </div>
 {% endblock content %}
