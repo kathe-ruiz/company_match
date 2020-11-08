@@ -1,6 +1,7 @@
 import requests
 
-class TorreIntegration():
+
+class TorreIntegration:
     def __init__(self):
         self.endpoint_bio = "https://torre.bio/api/bios/"
         self.endpoint_jobs = "https://search.torre.co/opportunities/_search/"
@@ -11,12 +12,17 @@ class TorreIntegration():
 
     def get_bio(self, username):
         bio_url = "{}{}".format(self.endpoint_bio, username)
-        return requests.get(bio_url)
-
-    def get_dream_jobs(self, **kwargs):
-        response = requests.post(self.endpoint_jobs, headers=self.headers)
+        response = requests.get(bio_url)
         try:
             response.raise_for_status()
         except requests.exceptions.HTTPError as e:
-            return []
+            return None
+        return response.json()
+
+    def get_dream_jobs(self, data):
+        response = requests.post(self.endpoint_jobs, json=data, headers=self.headers)
+        try:
+            response.raise_for_status()
+        except requests.exceptions.HTTPError as e:
+            return None
         return response.json()
