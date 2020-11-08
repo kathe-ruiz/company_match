@@ -71,11 +71,6 @@ Moved to `Live reloading and SASS compilation`_.
 
 
 
-Deployment
-----------
-
-The following details how to deploy this application.
-
 
 Heroku
 ^^^^^^
