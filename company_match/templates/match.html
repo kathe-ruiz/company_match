@@ -1,9 +1,40 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags i18n%}
 
 {% block title %}Server Error{% endblock %}
 
 {% block content %}
-Find your Company Dreams!!
+<div class="container">
+    <center><h2>Find your Company Dreams!!</h2></center>
+
+    <form method="get" action="{% url 'match:match' %}" class="">
+        <!-- {% csrf_token %} -->
+        <div class="row">
+            <div class="col">
+                {{ form|crispy }}
+            </div>
+            <div class="col">
+                <button class="btn btn-primary" type="submit">Buscar</button>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+      <div class="col-sm">
+        <!--First Column-->
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="{{ bio.picture }}" alt="Picture">
+            <div class="card-body">
+              <p class="card-text"><b>Name:</b> {{bio.name}}</p>
+              <p class="card-text"><b>professional Headline:</b> {{bio.professionalHeadline}}</p>
+            </div>
+          </div>
+        <!--endFirst Column-->
+      </div>
+      <div class="col-sm">
+        One of three columns
+      </div>
+    </div>
+  </div>
 {% endblock content %}
 
 
