@@ -9,5 +9,5 @@ def get_format_skills(skills):
                 "experience": "potential-to-develop",
             }
             data_list.append(item)
-    data["or"] = data_list
+        data["or"] = data_list
     return data

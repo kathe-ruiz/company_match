@@ -23,6 +23,7 @@ class HomeMatch(FormView):
             torreIntegration = TorreIntegration()
             bio = torreIntegration.get_bio(username)
             jobs = None
+
             if bio:
                 # get strengths
                 person = bio["person"]
@@ -31,4 +32,5 @@ class HomeMatch(FormView):
 
             context["bio"] = person if bio is not None else None
             context["jobs"] = jobs["results"] if jobs is not None else None
+            context["request_get"] = True
         return context
