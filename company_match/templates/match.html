@@ -44,7 +44,7 @@
       <div class="col-sm-4">
         <!--First Column-->
         <div class="card">
-            {% if bio %}
+            {% if bio.picture %}
             <img class="card-img-top" src="{{ bio.picture }}" alt="Picture">
             {% else %}
             <img class="card-img-top" src="{% static 'images/not_found.png' %}" alt="Picture">

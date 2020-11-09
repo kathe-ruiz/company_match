@@ -23,7 +23,6 @@ class HomeMatch(FormView):
             torreIntegration = TorreIntegration()
             bio = torreIntegration.get_bio(username)
             jobs = None
-
             if bio:
                 # get strengths
                 person = bio["person"]
