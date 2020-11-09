@@ -30,7 +30,12 @@ class HomeMatch(FormView):
                 strengths = get_format_skills(bio["strengths"])
                 jobs = torreIntegration.get_dream_jobs(strengths)
 
+            form = context["form"]
+            form.initial["username"] = username
+            context["form"] = form
+
             context["bio"] = person if bio is not None else None
             context["jobs"] = jobs["results"] if jobs is not None else None
             context["request_get"] = True
+
         return context
