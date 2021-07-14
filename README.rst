@@ -1,4 +1,4 @@
-Company Match - test
+Company Match
 =============
 
 Behold My Awesome Project!
